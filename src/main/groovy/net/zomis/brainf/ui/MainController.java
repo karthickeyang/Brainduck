@@ -185,6 +185,12 @@ public class MainController implements Initializable {
                 e.consume();
             }
         });
+        tabs.getSelectionModel().selectedItemProperty().addListener(this::tabChange);
+    }
+
+    private void tabChange(ObservableValue<? extends Tab> observable, Tab oldValue, Tab newValue) {
+        tabMap.get(newValue).getCodeArea().requestFocus();
+        System.out.println("change tab to " + newValue.getText());
     }
 
     @FXML void close() {
